@@ -1,14 +1,20 @@
 :root {
   --primary-font-family: Roboto, sans-serif;
   --secondary-font-family: Raleway, sans-serif;
+
   --primary-text-color: #212121;
   --secondary-text-color: #757575;
   --tertiary-text-color: #ffffff;
   --accent-text-color: #2196f3;
+
   --primary-background-color: #ffffff;
   --secondary-background-color: #2f303a;
   --tertiary-background-color: #f5f4fa;
+
   --icon-fill: #afb1b8;
+
+  --animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-duration: 250ms;
 }
 
 body {
@@ -41,12 +47,6 @@ ol {
 
 .link {
   text-decoration: none;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
 }
 
 /* --------- START COMPONENTS --------- */
@@ -84,6 +84,12 @@ img {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 /* --------- END COMPONENTS --------- */
@@ -129,6 +135,7 @@ img {
   line-height: 1.14;
   letter-spacing: 0.02em;
   color: inherit;
+  transition: color var(--animation-duration) var(--animation-timing-function);
 }
 
 .nav-list-link:hover,
@@ -137,6 +144,17 @@ img {
 }
 .active-page {
   color: var(--accent-text-color);
+  position: relative;
+}
+.active-page::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--accent-text-color);
+  border-radius: 2px;
 }
 
 .header-contacts-list {
@@ -159,6 +177,7 @@ img {
   line-height: 1.14;
   letter-spacing: 0.02em;
   color: var(--secondary-text-color);
+  transition: color var(--animation-duration) var(--animation-timing-function);
 }
 
 .contacts-icon {
@@ -213,6 +232,7 @@ img {
   background-color: var(--accent-text-color);
 
   cursor: pointer;
+  transition: background-color var(--animation-duration) var(--animation-timing-function);
 }
 
 .modal-btn:hover,
@@ -246,7 +266,7 @@ img {
 
 .advantages-item-title {
   margin-bottom: 10px;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 14px;
   line-height: 1.14;
   letter-spacing: 0.03em;
@@ -270,6 +290,28 @@ img {
 .activities-items {
   display: flex;
   justify-content: space-between;
+}
+
+.activities-item {
+  position: relative;
+}
+
+.activities-description {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.03em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--tertiary-text-color);
+  background-color: rgba(47, 48, 58, 0.8);
+
+  position: absolute;
+  width: 100%;
+  padding-top: 26px;
+  padding-bottom: 26px;
+  min-height: 70px;
+  transform: translateY(-100%);
 }
 
 /* --------- END SECTION STUDIO ACTIVITIES --------- */
@@ -330,6 +372,8 @@ img {
   height: 44px;
   border-radius: 50%;
   fill: var(--icon-fill);
+  transition: fill var(--animation-duration) var(--animation-timing-function),
+    background-color var(--animation-duration) var(--animation-timing-function);
 }
 
 .social-link:hover,
@@ -367,6 +411,8 @@ img {
   border: 1px solid var(--icon-fill);
   border-radius: 4px;
   color: var(--icon-fill);
+  transition: color var(--animation-duration) var(--animation-timing-function),
+    border-color var(--animation-duration) var(--animation-timing-function);
 }
 
 .clients-link:hover,
@@ -404,6 +450,9 @@ img {
   color: var(--primary-text-color);
   background-color: var(--tertiary-background-color);
   cursor: pointer;
+
+  transition: color var(--animation-duration) var(--animation-timing-function),
+    background-color var(--animation-duration) var(--animation-timing-function);
 }
 
 .radio-btn:hover,
@@ -429,6 +478,7 @@ img {
 
 .work-example-link {
   display: block;
+  transition: box-shadow var(--animation-duration) var(--animation-timing-function);
 }
 
 .work-example-link:hover,
@@ -457,6 +507,36 @@ img {
   letter-spacing: 0.03em;
   color: var(--secondary-text-color);
 }
+
+.work-example-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.work-example-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 63px 24px;
+
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: 0.03em;
+  color: var(--tertiary-text-color);
+  background-color: rgba(33, 150, 243, 0.9);
+
+  overflow: auto;
+  transform: translateY(100%);
+  transition: transform var(--animation-duration) var(--animation-timing-function);
+}
+
+.work-example-link:hover .work-example-overlay,
+.work-example-link:focus .work-example-overlay {
+  transform: translateY(0%);
+}
+
 /* --------- END PAGE PORTFOLIO --------- */
 
 /* --------- START FOOTER --------- */
@@ -490,6 +570,7 @@ img {
   line-height: 1.71;
   letter-spacing: 0.03em;
   color: var(--tertiary-text-color);
+  transition: color var(--animation-duration) var(--animation-timing-function);
 }
 
 .address:hover,
@@ -536,6 +617,8 @@ img {
   border-radius: 50%;
   fill: var(--primary-background-color);
   background-color: rgba(255, 255, 255, 0.1);
+  transition: fill var(--animation-duration) var(--animation-timing-function),
+    background-color var(--animation-duration) var(--animation-timing-function);
 }
 
 .footer-social-links li:not(:last-child) {
@@ -549,3 +632,54 @@ img {
 }
 
 /* --------- END FOOTER --------- */
+
+/* --------- START BACKDROP --------- */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: opacity var(--animation-duration) var(--animation-timing-function),
+    visibility var(--animation-duration) var(--animation-timing-function);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.modal {
+  width: 528px;
+  height: 580px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: var(--primary-background-color);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--primary-background-color);
+  cursor: pointer;
+}
+
+/* --------- END BACKDROP --------- */
